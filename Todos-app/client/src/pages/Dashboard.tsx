@@ -25,6 +25,7 @@ export default function Dashboard(){
 
   const todo = useRef <HTMLInputElement>(null);
   const [todos, setTodos] = useState<todoProps[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     async function TodosData(){
@@ -50,12 +51,17 @@ export default function Dashboard(){
     TodosData();
   },[])
 
- async  function addTodo(){
+ async function addTodo(){
+    setLoading(true);
 
     const token = localStorage.getItem("token");
     const title = (todo?.current?.value)?.trim();
     if(!title){
         alert("Todos Empty");
+        if(todo.current){
+        todo.current.value = ""
+    }
+        setLoading(false);
         return;
     }
 
@@ -75,8 +81,15 @@ export default function Dashboard(){
     if(todo.current){
         todo.current.value = ""
     }
+    setLoading(false);
     
     
+  }
+
+  const handleKeyDown = (e)=>{
+    if(e.key==="Enter"){
+      addTodo()
+    }
   }
 
 
@@ -94,13 +107,18 @@ export default function Dashboard(){
             </div>
             <div className="flex justify-between bg-gray-200 rounded-2xl">
               <input
+              onKeyDown={handleKeyDown}
               defaultValue={todo.current?.value}
               ref={todo}
                className="outline-none px-4 text-xl font-medium" type="text" />
               <button
+                disabled={loading}
                 className="px-8 py-4 bg-orange-300 font-semibold cursor-pointer rounded-2xl"
                 onClick={addTodo}
-              >Add</button>
+              >{
+                loading ? <div className="h-6 w-6 border-4 border-t-transparent animate-spin border-green-800 rounded-full"></div>
+                : "Add"
+              }</button>
             </div>
 
           {/* To-do Content */}
@@ -112,6 +130,7 @@ export default function Dashboard(){
                 title={title}
                 completed={completed}
                 onDelete={()=>todoDelete(id)}
+                addTodo={addTodo}
 
               ></Todo>)
             }
