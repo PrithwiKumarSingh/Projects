@@ -251,6 +251,30 @@ app.patch("/todo/:id", async (req,res)=>{
   }
 })
 
+app.delete("/todo/:id", middleware, async (req,res)=>{
+  const id = Number(req.params.id);
+
+  try {
+
+    const response = await prisma.todos.delete({
+      where : {
+        id,
+        userId : req.userId
+      }
+    })
+
+    res.send(200).json({
+      message : "Todo Delete Succesfully",
+      response
+    })
+  } catch (err) {
+    console.log(err);
+    res.json({
+      message : err
+    })
+  }
+})
+
 
 const PORT = process.env.PORT || 3001;
 
