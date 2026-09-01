@@ -1,0 +1,50 @@
+
+
+.tab-form{
+  display: flex;
+  gap: 2px;
+}
+.tab-button{
+  padding: 10px 20px;
+  border : 1px solid black;
+  cursor : pointer;
+}
+
+.tab-containt{
+  height : 200px; 
+  width : 400px; 
+  border: 1px solid black;
+}
+
+.profile-main{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap : 10px;
+}
+
+.interests{
+  display: flex;
+}
+
+.prevnext-btn{
+  width: full;
+  display : flex; 
+  flex-direction : column;
+  align-items: center;
+  margin : 30px ;
+}
+
+.button-comp{
+  width: 400px;
+  display : flex;
+  gap : 20px ;
+  justify-content: center;
+}
+
+.error{
+  color: red;
+  display: block;
+  margin-left: 50px;
+  font-size: small  ;
+}
