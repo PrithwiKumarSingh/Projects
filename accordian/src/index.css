@@ -1,0 +1,36 @@
+
+body{
+  display: flex; 
+  justify-content: center;
+}
+
+.accordian-main{ 
+ background-color : rgb(226, 218, 218); 
+ padding : 20px; 
+ display : flex;
+ flex-direction : column; 
+ width: 500px;
+ gap : 20px; 
+
+
+}
+
+.accordian-title{
+  font-size :xx-large;
+  background-color: rgb(238, 181, 181);
+  padding-left : 10px ;
+  border: 1px solid black;
+  text-align: start;
+  width: 100%;
+  cursor : pointer;
+  display:  flex;
+  justify-content : space-between;
+}
+
+.acco-desc{
+  padding : 10px;
+  border : 1px solid black;
+  border-top: none;
+  font-size : 18px;
+  user-select: none;
+}
