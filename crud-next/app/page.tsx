@@ -8,22 +8,24 @@ type Tool = "Pencil" | "Rectangle" | "Circle" | "Line"
 
 export default function Home() {
   const [activeTool, setActiveTool] = useState<Tool>("Pencil");
-  const [color, setColor] = useState("#000000");
+  const [color, setColor] = useState<string>("#000000");
 
   const [elements, setElements] = useState<Element[]>([]);
 
   return (
-    <main>
-      <h1>My Drawing App</h1>
+    <main className="relative h-screen w-screen overflow-hidden bg-[#121212]">
       <Toolbar 
       activeTool={activeTool}
       setActiveTool={setActiveTool}
       setColor={setColor}
       />
+      <div className="flex h-screen items-center justify-center">
       <DrawingCanvas
         color={color}
         activeTool={activeTool}
        />
+       </div>
+       
     </main>
   );
 }
